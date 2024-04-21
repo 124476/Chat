@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<a href="/uplode" class="btn btn-primary">Добавить новость</a>
+{% for item in news%}
+<div class="bg-secondary" style="margin: 20px;border-radius: 5px;border-style: solid;border-color: white;">
+    <h2  class="col-100 mb-3">{{item[0]}}</h2>
+    <div class="col-6 mb-3">
+        <a href="/tems_delete/{{item[2]}}" class="btn btn-danger">
+            Удалить
+        </a>
+    </div>
+</div>
+{% endfor %}
+<p>
+
+</p>
+<a href="/admin" class="btn btn-danger">
+    Назад
+</a>
+{% endblock %}
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if boolVis %}
+<h1>Нету пользователей для нового чата</h1>
+{% endif %}
+
+{% for item in users%}
+<div class="bg-secondary" style="margin: 20px;border-radius: 5px;border-style: solid;border-color: white;">
+    <h2 class="col-6 mb-3">{{item.name}}</h2>
+    <h6 class="col-6 mb-3">@{{item.login}}</h6>
+    <div class="col-6 mb-3">
+        <a href="/newChat/{{ item.id }}" class="btn btn-warning">
+            Чат
+        </a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+</body>
+</html>

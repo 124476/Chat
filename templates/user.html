@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Чат</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style type="text/css">
+       #maket TD {
+        padding: 5px; /* Поля вокруг содержимого ячеек */
+        vertical-align: top; /* Выравнивание по верхнему краю ячеек */
+        width: 200px; /* Ширина колонки */
+       }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<table width="100%" cellspacing="0" id="maket">
+    <tr>
+        <td id="leftcol">
+            <a href="/user/0"><h4>Глобальный чат</h4></a>
+            {% for chat in chats %}
+            <a href="/user/{{chat[0]}}"><h4>{{chat[1]}}</h4></a>
+            {% endfor %}
+            <a href="/newChat"><h4>Новый чат</h4></a>
+        </td>
+        <td>
+            <table style="
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 400px;">
+                <tr>
+                    <td>
+                        <ul style="list-style-type: none">
+                            {% for message in messagesTwo %}
+                            <li>
+                                <h7><pre>{{message.text}}</pre></h7>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul style="list-style-type: none">
+                            {% for message in messagesOne %}
+                            <li>
+                                <h7><pre>{{message.text}}</pre></h7>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                {{ form.text.label }}
+                {{ form.text(class="form-control", placeholder="Введите сообщение", type="text") }}
+                {% for error in form.text.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </td>
+    </tr>
+</table>
+{% endblock %}
+</body>
+</html>
